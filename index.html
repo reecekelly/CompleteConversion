@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Cheltenham Tourism</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/png" href="">	
+    <meta name="viewport" content="width=device-width" />	
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="user-scalable=no, width=device-width" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />   
+  
+
+    <script src="main.js"></script>
+    <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
+    
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+    
+<body>
+    <script>
+        var app = angular.module('app', []);
+        
+        var firstmeasurement = 1;
+        var secondmeasurement = 1.5;
+                
+        app.controller('MainCtrl', function($scope) {
+
+          $scope.project = {
+              
+              inital: 0,
+              calculated: 0,
+              
+              changemesone: function(obj) {
+                    //secondmeasurement = newvalue;
+                  console.log(obj);
+              },
+              
+              changemessec: function(obj) {
+                    //secondmeasurement = newvalue;
+              },
+              
+              price: function() {
+                this.calculated = (this.inital / firstmeasurement) * secondmeasurement;
+              },
+                          
+            };
+
+        });
+    </script>    
+    
+    <header id="main-header">
+        <div class="banner-holder">
+            <div data-toggle="modal" data-target="#detailsModal" class="main-logo"></div>
+        </div>
+    </header>
+    
+    <div class="central-holder">
+        <main id="main-main">
+            <div ng-app="app" ng-controller="MainCtrl" id="main-content-holder">
+                <div id="main-content-header">
+                    <div href="#a" data-toggle="tab" class="type-button">
+                        <span class="fa fa-balance-scale" aria-hidden="true"></span>
+                    </div> 
+                    <div href="#b" data-toggle="tab" class="type-button">
+                        <span class="fa fa-arrows-h" aria-hidden="true"></span>
+                    </div> 
+                    <div href="#c" data-toggle="tab" class="type-button">
+                        <span class="fa fa-thermometer-three-quarters" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div id="main-content-main">
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="a">
+                            <div class="main-input-holder">
+                                <input type="number" id="initalfield" class="main-input" ng-model='project.inital' ng-change='project.price()' min="0" /> 
+                                <div data-toggle="modal" data-target="#weightModal" class="type-button" data-weight="2" ng-click="project.changemesone(this.data-weight)">1</div>
+                            </div>
+
+                            <span class="input-divider glyphicon glyphicon-retweet" aria-hidden="true"></span>
+                            
+                            <div class="main-input-holder">
+                                <input type="number" id="finalfield" class="main-input" ng-model='project.calculated' ng-change='project.price()' min="0" /> 
+                                <div data-toggle="modal" data-target="#weightModal" class="type-button" ng-click="project.changemessec($event)" data="3">2</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane" id="b">
+                            <div class="main-input-holder">
+                                <input type="number" id="initalfield" class="main-input" ng-model='project.inital' ng-change='project.price()' min="0" /> 
+                                <div data-toggle="modal" data-target="#tempModal" class="type-button" data-weight="2" ng-click="project.changemesone(this.data-weight)">3</div>
+                            </div>
+
+                            <span class="input-divider glyphicon glyphicon-retweet" aria-hidden="true"></span>
+                            
+                            <div class="main-input-holder">
+                                <input type="number" id="finalfield" class="main-input" ng-model='project.calculated' ng-change='project.price()' min="0" /> 
+                                <div data-toggle="modal" data-target="#tempModal" data-toggle="modal" data-target="#myModal" class="type-button" ng-click="project.changemessec($event)" data="3">4</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane" id="c">
+                            <div class="main-input-holder">
+                                <input type="number" id="initalfield" class="main-input" ng-model='project.inital' ng-change='project.price()' min="0" /> 
+                                <div data-toggle="modal" data-target="#distanceModal" class="type-button" data-weight="2" ng-click="project.changemesone(this.data-weight)">5</div>
+                            </div>
+
+                            <span class="input-divider glyphicon glyphicon-retweet" aria-hidden="true"></span>
+                            
+                            <div class="main-input-holder">
+                                <input type="number" id="finalfield" class="main-input" ng-model='project.calculated' ng-change='project.price()' min="0" /> 
+                                <div data-toggle="modal" data-target="#distanceModal" data-toggle="modal" data-target="#myModal" class="type-button" ng-click="project.changemessec($event)" data="3">6</div>
+                            </div>
+                        </div>   
+                    </div>
+                    
+                </div>
+            
+            </div>
+        </main>
+        
+        <!-- Weight Modal -->
+        <div class="modal fade in" id="weightModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <button type="button" class="modal-exit btn btn-default glyphicon glyphicon-remove" data-dismiss="modal"></button>
+                    <div class="modal-header">
+                        <h4 class="modal-title"><span class="fa fa-balance-scale" aria-hidden="true"></span>weights</h4>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-weight="" ng-click="">mg</div>
+                                </div>                                
+                                
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-weight="" ng-click="">g</div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-weight="" ng-click="">kg</div>
+                                </div>
+
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-weight="" ng-click="">lb</div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-weight="" ng-click="">T</div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-weight="" ng-click="">O<sub>z</sub></div>
+                                </div>                                
+                            
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-weight="" ng-click="">tbsp.</div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-weight="" ng-click="">tsb.</div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-weight="" ng-click="">pt.</div>
+                                </div>                                
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        
+        <!-- Temperature Modal -->
+        <div class="modal fade" id="tempModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <button type="button" class="modal-exit btn btn-default glyphicon glyphicon-remove" data-dismiss="modal"></button>
+                    <div class="modal-header">
+                        <h4 class="modal-title"><span class="fa fa-arrows-h" aria-hidden="true"></span>lengths</h4>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-weight="" ng-click="">mm</div>
+                                </div>                                
+                                
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-weight="" ng-click="">cm</div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-weight="" ng-click="">m</div>
+                                </div>
+
+                            </div>
+                            
+                            <div class="row">
+  
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-weight="" ng-click="">km</div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-weight="" ng-click="">m</div>
+                                </div>
+                                
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-weight="" ng-click="">mi.</div>
+                                </div>
+                                  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        
+        <!-- Distance Modal -->
+        <div class="modal fade" id="distanceModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <button type="button" class="modal-exit btn btn-default glyphicon glyphicon-remove" data-dismiss="modal"></button>
+                    <div class="modal-header">
+                        <h4 class="modal-title"><span class="fa fa-thermometer-three-quarters" aria-hidden="true"></span>temperatures</h4>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-2"></div>
+                                
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-weight="" ng-click="">℃</div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-weight="" ng-click="">℉</div>
+                                </div>  
+                                
+                                <div class="col-sm-2"></div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        
+        <!-- Settings Modal -->
+        <div class="modal fade in" id="settingsModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <button type="button" class="modal-exit btn btn-default glyphicon glyphicon-remove" data-dismiss="modal"></button>
+                    <div class="modal-header">
+                        <h4 class="modal-title"><span class="fa fa-cogs" aria-hidden="true"></span>settings</h4>
+                    </div>
+                    
+                    <div class="modal-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>           
+        
+        <!-- Detail Modal -->
+        <div class="modal fade in" id="detailsModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <button type="button" class="modal-exit btn btn-default glyphicon glyphicon-remove" data-dismiss="modal"></button>
+                    <div class="modal-header">
+                        <h4 class="modal-title"><span class="fa fa-info-circle" aria-hidden="true"></span>details</h4>
+                    </div>
+                    
+                    <div class="modal-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>  
+        
+    </div>
+    
+    <footer class="footer">
+        <div class="banner-holder">
+            <div href="#a" data-toggle="tab" class="type-button">
+                <span class="fa fa-github" aria-hidden="true"></span>
+            </div> 
+            
+            <div href="#a" data-toggle="tab" class="type-button">
+                <span data-toggle="modal" data-target="#settingsModal" class="fa fa-cogs" aria-hidden="true"></span>
+            </div> 
+        </div>
+    </footer>  
+    
+    <script>
+        //$(function() {
+            //$('.col-sm-4').css("height", $('.col-sm-4').width());
+        //});
+        
+        console.log($('.col-sm-4').width());
+    </script>
+    
+</body>  
+    
+</html>
