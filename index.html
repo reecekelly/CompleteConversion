@@ -57,20 +57,20 @@
                     <div class="tab-content">
                         <div ng-controller="WeightConvertor" class="tab-pane active" id="a">
                             <div class="main-input-holder">
-                                <input type="number" class="main-input" ng-model='calculateWeight.one.amount' 
-										ng-change='calculateWeight.calculateWeightChange(calculateWeight.one.amount)' min="0" onClick="this.select();" value="" /> 
-                                <div id="scaleone" data-toggle="modal" data-target="#weightModal" class="type-button" ng-click="setUnit(false)"></div>
+                                <input type="number" class="main-input" ng-model='calculateMeasurement.input.amount' 
+										ng-change='calculateMeasurement.calculateMeasurementChange(calculateMeasurement.input.amount)' min="0" onClick="this.select();" value="" /> 
+                                <div id="type-of-selection-input-weight" data-toggle="modal" data-target="#weightModal" class="type-button" ng-click="setUnit(false)"></div>
                             </div>
 
                             <span class="input-divider glyphicon glyphicon-retweet" aria-hidden="true"></span>
                             
                             <div class="main-input-holder">
-                                <input id="outputfield" type="number" class="main-input" ng-model='calculateWeight.two.amount' min="0" value="" />
-                                <div id="scaletwo" data-toggle="modal" data-target="#weightModal" class="type-button" ng-click="setUnit(true)"></div>
+                                <input id="outputfield-weight" type="number" class="main-input" ng-model='calculateMeasurement.output.amount' min="0" value="" />
+                                <div id="type-of-selection-output-weight" data-toggle="modal" data-target="#weightModal" class="type-button" ng-click="setUnit(true)"></div>
                             </div>
                         </div>
                         
-                        <div ng-controller="DistanceConvertor" class="tab-pane" id="b">
+                        <div class="tab-pane" id="b">
                             <div class="main-input-holder">
                                 <input type="number" id="initalfield2" class="main-input" ng-model='project.inital' min="0" /> 
                                 <div data-toggle="modal" data-target="#tempModal" class="type-button"></div>
@@ -119,17 +119,17 @@
                             <div class="row">
                                 
                                 <div class="col-sm-4">
-                                    <div 							class="type-button" data-dismiss="modal" ng-click="calculateWeight.setWeightScale($event)" 
+                                    <div class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'weight')" 
 										data-weight="10000">mg</div>
                                 </div>                                
                                 
                                 <div class="col-sm-4">
-                                    <div  	class="type-button" data-dismiss="modal" ng-click="calculateWeight.setWeightScale($event)" 
+                                    <div class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'weight')" 
 										data-weight="1000">g</div>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <div id="default-weight-one" 	class="type-button" data-dismiss="modal" ng-click="calculateWeight.setWeightScale($event)" 
+                                    <div id="default-weight-one" class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'weight')" 
 										data-weight="1">kg</div>
                                 </div>
 
@@ -137,35 +137,35 @@
                             
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <div  						class="type-button" data-dismiss="modal" ng-click="calculateWeight.setWeightScale($event)" 
+                                    <div class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'weight')" 
 										data-weight="2.20462">lb</div>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <div  								class="type-button" data-dismiss="modal" ng-click="calculateWeight.setWeightScale($event)" 
+                                    <div class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'weight')" 
 										data-weight="0.000984207">T</div>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <div  						class="type-button" data-dismiss="modal" ng-click="calculateWeight.setWeightScale($event)" 
-										data-weight="35.274">O<sub>z</sub></div>
+                                    <div class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'weight')" 
+										data-weight="35.274">Oz</div>
                                 </div>                                
                             
                             </div>
                             
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <div   				id="default-weight-two" 					class="type-button" data-dismiss="modal" ng-click="calculateWeight.setWeightScale($event)" 
+                                    <div id="default-weight-two" class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'weight')" 
 										data-weight="64">tbsp.</div>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <div    						class="type-button" data-dismiss="modal" ng-click="calculateWeight.setWeightScale($event)" 
+                                    <div class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'weight')" 
 										data-weight="175.82">tsp.</div>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <div    						class="type-button" data-dismiss="modal" ng-click="calculateWeight.setWeightScale($event)" 
+                                    <div class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'weight')" 
 										data-weight="1.7597539863927">pt.</div>
                                 </div>                                
                             
