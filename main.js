@@ -43,15 +43,31 @@ var holdingoutput = {
 };
 
 if(holdinginput.weight.measurement === 0) {
-	holdinginput.weight.type = document.getElementById("default-weight-one").innerHTML;
-	holdinginput.weight.measurement = document.getElementById("default-weight-one").getAttribute("data-weight");
+	holdinginput.weight.type = document.getElementById("default-input-weight").innerHTML;
+	holdinginput.weight.measurement = document.getElementById("default-input-weight").getAttribute("data-weight");
 	document.getElementById("type-of-selection-input-weight").innerHTML = holdinginput.weight.type;
+	
+	holdinginput.distance.type = document.getElementById("default-input-distance").innerHTML;
+	holdinginput.distance.measurement = document.getElementById("default-input-distance").getAttribute("data-weight");
+	document.getElementById("type-of-selection-input-distance").innerHTML = holdinginput.distance.type;
+	
+	holdinginput.temp.type = document.getElementById("default-input-temp").innerHTML;
+	holdinginput.temp.measurement = document.getElementById("default-input-temp").getAttribute("data-weight");
+	document.getElementById("type-of-selection-input-temp").innerHTML = holdinginput.temp.type;
 }
 
 if(holdingoutput.weight.measurement === 0) {
-	holdingoutput.weight.type = document.getElementById("default-weight-two").innerHTML;
-	holdingoutput.weight.measurement = document.getElementById("default-weight-two").getAttribute("data-weight");
+	holdingoutput.weight.type = document.getElementById("default-output-weight").innerHTML;
+	holdingoutput.weight.measurement = document.getElementById("default-output-weight").getAttribute("data-weight");
 	document.getElementById("type-of-selection-output-weight").innerHTML = holdingoutput.weight.type;
+	
+	holdingoutput.distance.type = document.getElementById("default-output-distance").innerHTML;
+	holdingoutput.distance.measurement = document.getElementById("default-output-distance").getAttribute("data-weight");
+	document.getElementById("type-of-selection-output-distance").innerHTML = holdingoutput.distance.type;
+	
+	holdingoutput.temp.type = document.getElementById("default-output-temp").innerHTML;
+	holdingoutput.temp.measurement = document.getElementById("default-output-temp").getAttribute("data-weight");
+	document.getElementById("type-of-selection-output-temp").innerHTML = holdingoutput.temp.type;
 }
 
 (function (angular) {
@@ -59,47 +75,76 @@ if(holdingoutput.weight.measurement === 0) {
 var fieldselection;
 var app = angular.module('app', []);
 
-app.controller('WeightConvertor', function ($scope, $element) {
+app.controller('MeasurementConvertor', function ($scope, $element) {
 	
 	$scope.setUnit = function(e) {
 		fieldselection = e;
 	};
 	
 	$scope.calculateMeasurement = {
+	
 		input: {
-			amount: holdinginput.weight.amount,
-			type: holdinginput.weight.type,
-			measurement: holdinginput.weight.measurement
-		},
+			weight : {
+				amount: holdinginput.weight.amount,
+				type: holdinginput.weight.type,
+				measurement: holdinginput.weight.measurement
+			},
+			
+			distance : {
+				amount: holdinginput.distance.amount,
+				type: holdinginput.distance.type,
+				measurement: holdinginput.distance.measurement
+			},	
+			
+			temp : {
+				amount: holdinginput.temp.amount,
+				type: holdinginput.temp.type,
+				measurement: holdinginput.temp.measurement
+			}
+		},	
 		
 		output: {
-			amount: holdingoutput.weight.amount,
-			type: holdingoutput.weight.type,
-			measurement: holdingoutput.weight.measurement
-		},
-		
-		calculateMeasurementChange: function(e) {
-			this.input.amount = e;
-			this.output.amount = Math.round(Math.sqrt(Math.pow((this.input.amount / this.input.measurement) * (this.output.measurement), 2)) * 100000) / 100000;
+			weight : {
+				amount: holdingoutput.weight.amount,
+				type: holdingoutput.weight.type,
+				measurement: holdingoutput.weight.measurement
+			},
 			
-			holdinginput.weight = this.input;
-			holdingoutput.weight = this.output;
+			distance : {
+				amount: holdingoutput.distance.amount,
+				type: holdingoutput.distance.type,
+				measurement: holdingoutput.distance.measurement
+			},	
+			
+			temp : {
+				amount: holdingoutput.temp.amount,
+				type: holdingoutput.temp.type,
+				measurement: holdingoutput.temp.measurement
+			}
 		},
 		
-		setMeasurementType: function(e) {
+		calculateMeasurementChange: function(e, metric) {
+			this.input[metric].amount = e;
+			this.output[metric].amount = Math.round(Math.sqrt(Math.pow((this.input[metric].amount / this.input[metric].measurement) * (this.output[metric].measurement), 2)) * 100000) / 100000;
+			
+			holdinginput[metric] = this.input[metric];
+			holdingoutput[metric] = this.output[metric];
+		},
+		
+		setMeasurementType: function(e, metric) {
 			if(!fieldselection) {
-				holdinginput.weight.measurement = e.target.dataset.weight;
-				holdinginput.weight.type = e.currentTarget.innerHTML;
+				holdinginput[metric].measurement = e.target.dataset.weight;
+				holdinginput[metric].type = e.currentTarget.innerHTML;
 				
-				document.getElementById("type-of-selection-input-weight").innerHTML = holdinginput.weight.type;
-				document.getElementById("outputfield-weight").value = clickOutput(holdinginput.weight.amount, fieldselection);
+				document.getElementById("type-of-selection-input-"+metric).innerHTML = holdinginput[metric].type;
+				document.getElementById("outputfield-"+metric).value = clickOutput(holdinginput[metric], holdingoutput[metric], fieldselection);
 				
 			} else {				
-				holdingoutput.weight.measurement = e.target.dataset.weight;
-				holdingoutput.weight.type = e.currentTarget.innerHTML;
+				holdingoutput[metric].measurement = e.target.dataset.weight;
+				holdingoutput[metric].type = e.currentTarget.innerHTML;
 				
-				document.getElementById("type-of-selection-output-weight").innerHTML = holdingoutput.weight.type;
-				document.getElementById("outputfield-weight").value = clickOutput(holdingoutput.weight.amount, fieldselection);
+				document.getElementById("type-of-selection-output-"+metric).innerHTML = holdingoutput[metric].type;
+				document.getElementById("outputfield-"+metric).value = clickOutput(holdinginput[metric], holdingoutput[metric], fieldselection);
 			}
 		}
 	};
@@ -107,31 +152,13 @@ app.controller('WeightConvertor', function ($scope, $element) {
 		
 }(angular));
 
-
-function setMeasurementType(e, unittype) {
-	if(!fieldselection) {
-		holdinginput.weight.measurement = e.target.dataset.weight;
-		holdinginput.weight.type = e.currentTarget.innerHTML;
-		
-		document.getElementById("type-of-selection-input-" + unittype).innerHTML = holdinginput.weight.type;
-		document.getElementById("outputfield-" + unittype).value = clickOutput(holdinginput.weight.amount, fieldselection);
-		
-	} else {				
-		holdingoutput.weight.measurement = e.target.dataset.weight;
-		holdingoutput.weight.type = e.currentTarget.innerHTML;
-		
-		document.getElementById("type-of-selection-output-" + unittype).innerHTML = holdingoutput.weight.type;
-		document.getElementById("outputfield-" + unittype).value = clickOutput(holdingoutput.weight.amount, fieldselection);
-	}
-}
-
-function clickOutput(e, type) {
+function clickOutput(input, output, type) {
 	if(!type) {
-		holdingoutput.weight.amount = Math.round(Math.sqrt(Math.pow((holdinginput.weight.amount / holdinginput.weight.measurement) * (holdingoutput.weight.measurement), 2)) * 100000) / 100000;
-		return holdingoutput.weight.amount;
+		output.amount = Math.round(Math.sqrt(Math.pow((input.amount / input.measurement) * (output.measurement), 2)) * 100000) / 100000;
+		return output.amount;
 		
 	} else {
-		holdingoutput.weight.amount = Math.round(Math.sqrt(Math.pow((holdinginput.weight.amount / holdinginput.weight.measurement) * (holdingoutput.weight.measurement), 2)) * 100000) / 100000;
-		return holdingoutput.weight.amount;
+		output.amount = Math.round(Math.sqrt(Math.pow((input.amount / input.measurement) * (output.measurement), 2)) * 100000) / 100000;
+		return output.amount;
 	}
 }

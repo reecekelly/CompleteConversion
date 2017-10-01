@@ -55,48 +55,52 @@
                 <div id="main-content-main">
 
                     <div class="tab-content">
-                        <div ng-controller="WeightConvertor" class="tab-pane active" id="a">
+						<!--Weight Convertor-->
+                        <div ng-controller="MeasurementConvertor" class="tab-pane" id="a">
                             <div class="main-input-holder">
-                                <input type="number" class="main-input" ng-model='calculateMeasurement.input.amount' 
-										ng-change='calculateMeasurement.calculateMeasurementChange(calculateMeasurement.input.amount)' min="0" onClick="this.select();" value="" /> 
+                                <input type="number" class="main-input" ng-model='calculateMeasurement.input.weight.amount' ng-change='calculateMeasurement.calculateMeasurementChange(calculateMeasurement.input.weight.amount, "weight")' min="0" onClick="this.select();" value="" /> 
                                 <div id="type-of-selection-input-weight" data-toggle="modal" data-target="#weightModal" class="type-button" ng-click="setUnit(false)"></div>
                             </div>
 
                             <span class="input-divider glyphicon glyphicon-retweet" aria-hidden="true"></span>
                             
                             <div class="main-input-holder">
-                                <input id="outputfield-weight" type="number" class="main-input" ng-model='calculateMeasurement.output.amount' min="0" value="" />
+                                <input id="outputfield-weight" type="number" class="main-input" ng-model='calculateMeasurement.output.weight.amount' min="0" value=""  disabled />
                                 <div id="type-of-selection-output-weight" data-toggle="modal" data-target="#weightModal" class="type-button" ng-click="setUnit(true)"></div>
                             </div>
                         </div>
-                        
-                        <div class="tab-pane" id="b">
+						
+                        <!--Distance Convertor-->
+                        <div ng-controller="MeasurementConvertor" class="tab-pane" id="b">
                             <div class="main-input-holder">
-                                <input type="number" id="initalfield2" class="main-input" ng-model='project.inital' min="0" /> 
-                                <div data-toggle="modal" data-target="#tempModal" class="type-button"></div>
+                                <input type="number" class="main-input" ng-model='calculateMeasurement.input.distance.amount' ng-change='calculateMeasurement.calculateMeasurementChange(calculateMeasurement.input.distance.amount, "distance")' min="0" onClick="this.select();" value="" /> 
+                                <div id="type-of-selection-input-distance" data-toggle="modal" data-target="#distanceModal" class="type-button" ng-click="setUnit(false)"></div>
                             </div>
 
                             <span class="input-divider glyphicon glyphicon-retweet" aria-hidden="true"></span>
                             
                             <div class="main-input-holder">
-                                <input type="number" id="finalfield2" class="main-input" ng-model='project.calculated' min="0" /> 
-                                <div data-toggle="modal" data-target="#tempModal" class="type-button"></div>
+                                <input id="outputfield-distance" type="number" class="main-input" ng-model='calculateMeasurement.output.distance.amount' min="0" value=""  disabled />
+                                <div id="type-of-selection-output-distance" data-toggle="modal" data-target="#distanceModal" class="type-button" ng-click="setUnit(true)"></div>
                             </div>
-                        </div>
-                        
-                        <div class="tab-pane" id="c">
+                        </div>					
+						
+                        <!--Temperature Convertor-->
+                        <div ng-controller="MeasurementConvertor" class="tab-pane active" id="c">
                             <div class="main-input-holder">
-                                <input type="number" id="initalfield3" class="main-input" ng-model='project.inital' min="0" /> 
-                                <div data-toggle="modal" data-target="#distanceModal" class="type-button" ></div>
+                                <input type="number" class="main-input" ng-model='calculateMeasurement.input.temp.amount' ng-change='calculateMeasurement.calculateMeasurementChange(calculateMeasurement.input.temp.amount, "temp")' min="0" onClick="this.select();" value="" /> 
+                                <div id="type-of-selection-input-temp" data-toggle="modal" data-target="#tempModal" class="type-button" ng-click="setUnit(false)"></div>
                             </div>
 
                             <span class="input-divider glyphicon glyphicon-retweet" aria-hidden="true"></span>
                             
                             <div class="main-input-holder">
-                                <input type="number" id="finalfield3" class="main-input" ng-model='project.calculated' min="0" /> 
-                                <div data-toggle="modal" data-target="#distanceModal" class="type-button"></div>
+                                <input id="outputfield-temp" type="number" class="main-input" ng-model='calculateMeasurement.output.temp.amount' min="0" value=""  disabled />
+                                <div id="type-of-selection-output-temp" data-toggle="modal" data-target="#tempModal" class="type-button" ng-click="setUnit(true)"></div>
                             </div>
-                        </div>   
+                        </div>	
+
+						
                     </div>
                     
                 </div>
@@ -115,7 +119,7 @@
                     </div>
                     
                     <div class="modal-body">
-                        <div ng-controller="WeightConvertor" class="container-fluid">
+                        <div ng-controller="MeasurementConvertor" class="container-fluid">
                             <div class="row">
                                 
                                 <div class="col-sm-4">
@@ -124,12 +128,12 @@
                                 </div>                                
                                 
                                 <div class="col-sm-4">
-                                    <div class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'weight')" 
+                                    <div id="default-input-weight" class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'weight')" 
 										data-weight="1000">g</div>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <div id="default-weight-one" class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'weight')" 
+                                    <div id="default-output-weight" class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'weight')" 
 										data-weight="1">kg</div>
                                 </div>
 
@@ -155,7 +159,7 @@
                             
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <div id="default-weight-two" class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'weight')" 
+                                    <div class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'weight')" 
 										data-weight="64">tbsp.</div>
                                 </div>
 
@@ -176,8 +180,8 @@
             </div>
         </div>    
         
-        <!-- Temperature Modal -->
-        <div class="modal fade" id="tempModal" role="dialog">
+        <!-- Distance Modal -->
+        <div class="modal fade" id="distanceModal" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -187,37 +191,59 @@
                     </div>
                     
                     <div class="modal-body">
-                        <div class="container-fluid">
+                        <div ng-controller="MeasurementConvertor" class="container-fluid">
                             <div class="row">
                                 
                                 <div class="col-sm-4">
-                                    <div class="type-button" data-weight="" ng-click="">mm</div>
+                                    <div class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'distance')" 
+										data-weight="1000">mm</div>
                                 </div>                                
                                 
                                 <div class="col-sm-4">
-                                    <div class="type-button" data-weight="" ng-click="">cm</div>
+                                    <div id="default-input-distance" class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'distance')" 
+										data-weight="100">cm</div>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <div class="type-button" data-weight="" ng-click="">m</div>
+                                    <div id="default-output-distance" class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'distance')" 
+										data-weight="1">m</div>
                                 </div>
 
                             </div>
                             
                             <div class="row">
-  
                                 <div class="col-sm-4">
-                                    <div class="type-button" data-weight="" ng-click="">km</div>
+                                    <div class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'distance')" 
+										data-weight="0.001">km</div>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <div class="type-button" data-weight="" ng-click="">m</div>
+                                    <div class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'distance')" 
+										data-weight="1.09361">yd</div>
                                 </div>
-                                
+
                                 <div class="col-sm-4">
-                                    <div class="type-button" data-weight="" ng-click="">mi.</div>
+                                    <div class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'distance')" 
+										data-weight="0.000621371">mi.</div>
+                                </div>                                
+                            
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-2"></div>
+
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'distance')" 
+										data-weight="3.28084">ft</div>
                                 </div>
-                                  
+
+                                <div class="col-sm-4">
+                                    <div class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'distance')" 
+										data-weight="39.3701">inch</div>
+                                </div>      
+
+                                <div class="col-sm-2"></div>							
+                            
                             </div>
                         </div>
                     </div>
@@ -225,8 +251,8 @@
             </div>
         </div>  
         
-        <!-- Distance Modal -->
-        <div class="modal fade" id="distanceModal" role="dialog">
+        <!-- Temperature Modal -->
+        <div class="modal fade" id="tempModal" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -236,19 +262,24 @@
                     </div>
                     
                     <div class="modal-body">
-                        <div class="container-fluid">
+                        <div ng-controller="MeasurementConvertor" class="container-fluid">
                             <div class="row">
-                                <div class="col-sm-2"></div>
                                 
                                 <div class="col-sm-4">
-                                    <div class="type-button" data-weight="" ng-click="">℃</div>
+                                    <div class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'temp')" 
+										data-weight="1">°C</div>
+                                </div>                                
+                                
+                                <div class="col-sm-4">
+                                    <div id="default-input-temp" class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'temp')" 
+										data-weight="33.8">°F</div>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <div class="type-button" data-weight="" ng-click="">℉</div>
-                                </div>  
-                                
-                                <div class="col-sm-2"></div>
+                                    <div id="default-output-temp" class="type-button" data-dismiss="modal" ng-click="calculateMeasurement.setMeasurementType($event, 'temp')" 
+										data-weight="274.15">°K</div>
+                                </div>
+
                             </div>
                             
                         </div>
