@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "com.ct5006.cheltenhamfinder"
+        version   = "1.0.5">
+		
+		<name>Complete Conversion</name>
+		<description>This app lets you convert a variety of different measurement types inculding 'Weights', 'distances' and 'Temperatures'.</description>
+		<author>Reece Kelly</author>
+		
+		<feature name="http://api.phonegap.com/1.0/device" />
+		
+		<!--<preference name="permissions" value="none" />-->
+		<preference name="orientation" value="portrait" />
+		<preference name="target-device" value="universal" />
+		<preference name="fullscreen" value="true" />
+		<preference name="SuppressesIncrementalRendering" value="true"/>
+		<preference name="KeepRunning" value="true"/>
+		
+		<preference name="disallowOverscroll" value="true" />
+		<preference name="DisallowOverscroll" value="true" />
+		
+		<gap:plugin name="com.phonegap.plugin.statusbar" version="1.0.1" />
+		<gap:plugin name="org.apache.cordova.inappbrowser" version="0.6.0" />
+		<gap:plugin name="org.apache.cordova.network-information" version="0.2.15" />
+		
+		<preference name="prerendered-icon" value="true" />
+		<icon src="images/chelt_finder_512x512.png" />	
+		
+		<gap:splash src="splash_chelt_finder.png" />
+		<preference name="SplashScreenDelay" value="2000"/>
+		
+		<content src="index.html" />
+		
+		<access origin="*"/>
+		
+</widget>

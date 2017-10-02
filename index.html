@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html>
+
+<!--Appcache manifest directory located in html tag to enable appcache-->
+<html manifest="AppCache.appcache">
 <head>
-    <meta charset="utf-8">
     <title>Complete Conversion</title>
+	<meta name="author" content="reece kelly">
+	 <meta charset="utf-8">
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,10 +23,13 @@
     <![endif]-->
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+	<script src="bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="cordova.js" type="text/javascript"></script>
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>-->
+	<link rel="stylesheet" href="bootstrap-4.0.0-alpha.6-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles.css">  
 </head>
@@ -56,7 +62,7 @@
 
                     <div class="tab-content">
 						<!--Weight Convertor-->
-                        <div ng-controller="MeasurementConvertor" class="tab-pane" id="a">
+                        <div ng-controller="MeasurementConvertor" class="tab-pane active" id="a">
                             <div class="main-input-holder">
                                 <input type="number" class="main-input" ng-model='calculateMeasurement.input.weight.amount' ng-change='calculateMeasurement.calculateMeasurementChange(calculateMeasurement.input.weight.amount, "weight")' min="0" onClick="this.select();" value="" /> 
                                 <div id="type-of-selection-input-weight" data-toggle="modal" data-target="#weightModal" class="type-button" ng-click="setUnit(false)"></div>
@@ -86,7 +92,7 @@
                         </div>					
 						
                         <!--Temperature Convertor-->
-                        <div ng-controller="MeasurementConvertor" class="tab-pane active" id="c">
+                        <div ng-controller="MeasurementConvertor" class="tab-pane" id="c">
                             <div class="main-input-holder">
                                 <input type="number" class="main-input" ng-model='calculateMeasurement.input.temp.amount' ng-change='calculateMeasurement.calculateMeasurementChange(calculateMeasurement.input.temp.amount, "temp")' min="0" onClick="this.select();" value="" /> 
                                 <div id="type-of-selection-input-temp" data-toggle="modal" data-target="#tempModal" class="type-button" ng-click="setUnit(false)"></div>
@@ -100,7 +106,6 @@
                             </div>
                         </div>	
 
-						
                     </div>
                     
                 </div>
@@ -326,11 +331,11 @@
     
     <footer class="footer">
         <div class="banner-holder">
-            <div href="#a" data-toggle="tab" class="type-button">
+            <div href="#" onclick="var ref=window.open('https://github.com/reecekelly/CompleteConversion', '_blank', 'location=yes')" rel="external" class="type-button">
                 <span class="fa fa-github" aria-hidden="true"></span>
             </div> 
             
-            <div href="#a" data-toggle="tab" class="type-button">
+            <div data-toggle="tab" class="type-button">
                 <span data-toggle="modal" data-target="#settingsModal" class="fa fa-cogs" aria-hidden="true"></span>
             </div> 
         </div>

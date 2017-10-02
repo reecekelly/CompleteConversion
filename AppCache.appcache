@@ -1,0 +1,27 @@
+CACHE MANIFEST
+
+# 01:v1
+
+CACHE:
+#html file
+index.html
+
+#CSS file
+bootstrap-4.0.0-alpha.6-dist/css/bootstrap.min.css
+font-awesome-4.7.0/css/font-awesome.min.css
+styles.css
+
+#js
+https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js
+bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min.js
+https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js
+cordova.js
+main.js
+
+#Images files
+images/chelt_finder_loader.gif
+
+FALLBACK:
+
+NETWORK:
+*
