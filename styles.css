@@ -48,6 +48,10 @@ body {
     padding: 10px;
 }
 
+.main-input-holder:nth-child(1) {
+    margin-bottom: 10px;
+}
+
 .main-input {
     float:left;
     width: 350px;
